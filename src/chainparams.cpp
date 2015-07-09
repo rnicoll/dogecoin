@@ -28,6 +28,9 @@ using namespace std;
  */
 
 class CMainParams : public CChainParams {
+protected:
+    Consensus::Params baseConsensus;
+    Consensus::Params auxpowConsensus;
 public:
     CMainParams() {
         strNetworkID = "main";
@@ -36,13 +39,28 @@ public:
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 1000;
         consensus.powLimit = uint256S("0x00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20;
-        consensus.nPowTargetTimespan = 4 * 60 * 60; // pre-digishield: 4 hours
+        consensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
         consensus.nPowTargetSpacing = 60; // 1 minute
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.nAuxpowChainId = 0x0062; // 98 - Josh Wise!
         consensus.nAuxpowStartHeight = 371337;
         consensus.fStrictChainId = true;
         consensus.nLegacyBlocksBefore = 371337;
+        consensus.nHeightEffective = 145000;
+        consensus.fDigishieldDifficultyCalculation = true;
+
+        baseConsensus = consensus;
+        auxpowConsensus = consensus;
+        baseConsensus.nPowTargetTimespan = 4 * 60 * 60; // pre-digishield: 4 hours
+        baseConsensus.nHeightEffective = 0;
+        baseConsensus.fDigishieldDifficultyCalculation = false;
+        auxpowConsensus.nHeightEffective = 371337;
+        // Note that genesis hash is set further down this method
+
+        // Assemble the binary search tree of parameters
+        consensus.pLeft = &baseConsensus;
+        consensus.pRight = &auxpowConsensus;
+
         /** 
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
@@ -84,6 +102,8 @@ public:
         genesis.nNonce   = 99943;
 
         consensus.hashGenesisBlock = genesis.GetHash();
+        baseConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
+        auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         assert(consensus.hashGenesisBlock == uint256S("0x1a91e3dace36e2be3bf030a65679fe821aa1d6ef92e7c9902eb318182c355691"));
         assert(genesis.hashMerkleRoot == uint256S("0x5b2a3f53f605d62c53e62932dac6925e3d74afa5a4b459745c36d42d0ed26a69"));
 
@@ -148,6 +168,7 @@ class CTestNetParams : public CMainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
+
         consensus.nMajorityEnforceBlockUpgrade = 51;
         consensus.nMajorityRejectBlockOutdated = 75;
         consensus.nMajorityWindow = 100;
@@ -155,6 +176,18 @@ public:
         consensus.nAuxpowStartHeight = 158100;
         consensus.fStrictChainId = false;
         consensus.nLegacyBlocksBefore = 158100;
+
+        // Reset links before we copy parameters
+        consensus.pLeft = NULL;
+        consensus.pRight = NULL;
+        auxpowConsensus = consensus;
+        baseConsensus = consensus;
+        baseConsensus.fDigishieldDifficultyCalculation = false;
+        baseConsensus.nPowTargetTimespan = 4 * 60 * 60; // pre-digishield: 4 hours
+
+        // Assemble the binary search tree of parameters
+        consensus.pLeft = &baseConsensus;
+        consensus.pRight = &auxpowConsensus;
 
         pchMessageStart[0] = 0xfc;
         pchMessageStart[1] = 0xc1;
@@ -169,6 +202,8 @@ public:
         genesis.nTime = 1391503289;
         genesis.nNonce = 997879;
         consensus.hashGenesisBlock = genesis.GetHash();
+        baseConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
+        auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         assert(consensus.hashGenesisBlock == uint256S("0xbb0a78264637406b6360aad926284d544d7049f45189db5664f3c4d07350559e"));
 
         vFixedSeeds.clear();
@@ -218,6 +253,20 @@ public:
         consensus.powLimit = uint256S("0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1;
         consensus.fStrictChainId = true;
         consensus.nLegacyBlocksBefore = 0;
+
+        // Reset links before we copy parameters
+        consensus.pLeft = NULL;
+        consensus.pRight = NULL;
+        auxpowConsensus = consensus;
+        auxpowConsensus.pLeft = NULL;
+        auxpowConsensus.pRight = NULL;
+        baseConsensus = auxpowConsensus;
+        baseConsensus.nPowTargetTimespan = 4 * 60 * 60; // pre-digishield: 4 hours
+
+        // Assemble the binary search tree of parameters
+        consensus.pLeft = &baseConsensus;
+        consensus.pRight = &auxpowConsensus;
+
         pchMessageStart[0] = 0xfa;
         pchMessageStart[1] = 0xbf;
         pchMessageStart[2] = 0xb5;
@@ -227,6 +276,8 @@ public:
         genesis.nBits = 0x207fffff;
         genesis.nNonce = 2;
         consensus.hashGenesisBlock = genesis.GetHash();
+        baseConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
+        auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         nDefaultPort = 18444;
         assert(consensus.hashGenesisBlock == uint256S("0x3d2160a3b5dc4a9d62e7e66a295f70313ac808440ef7400d6c0772171ce973a5"));
         nPruneAfterHeight = 1000;

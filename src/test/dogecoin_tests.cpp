@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE(subsidy_limit_test)
 {
     int nHeight = 0;
     int nStepSize= 1;
-    const Consensus::Params& params = Params(CBaseChainParams::MAIN).GetConsensus();
+    const Consensus::Params& params = Params(CBaseChainParams::MAIN).GetConsensus(0);
     CAmount nSum = 0;
     uint256 prevHash = uint256S("0");
 
@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE(subsidy_limit_test)
 BOOST_AUTO_TEST_CASE(get_next_work_difficulty_limit)
 {
     SelectParams(CBaseChainParams::MAIN);
-    const Consensus::Params& params = Params().GetConsensus();
+    const Consensus::Params& params = Params().GetConsensus(0);
 
     CBlockIndex pindexLast;
     int64_t nLastRetargetTime = 1386474927; // Block # 1
@@ -119,7 +119,7 @@ BOOST_AUTO_TEST_CASE(get_next_work_difficulty_limit)
 BOOST_AUTO_TEST_CASE(get_next_work_pre_digishield)
 {
     SelectParams(CBaseChainParams::MAIN);
-    const Consensus::Params& params = Params().GetConsensus();
+    const Consensus::Params& params = Params().GetConsensus(0);
     
     CBlockIndex pindexLast;
     int64_t nLastRetargetTime = 1386942008; // Block 9359
@@ -133,7 +133,7 @@ BOOST_AUTO_TEST_CASE(get_next_work_pre_digishield)
 BOOST_AUTO_TEST_CASE(get_next_work_digishield)
 {
     SelectParams(CBaseChainParams::MAIN);
-    const Consensus::Params& params = Params().GetConsensus();
+    const Consensus::Params& params = Params().GetConsensus(145000);
     
     CBlockIndex pindexLast;
     int64_t nLastRetargetTime = 1395094427;
@@ -148,7 +148,7 @@ BOOST_AUTO_TEST_CASE(get_next_work_digishield)
 BOOST_AUTO_TEST_CASE(get_next_work_digishield_modulated_upper)
 {
     SelectParams(CBaseChainParams::MAIN);
-    const Consensus::Params& params = Params().GetConsensus();
+    const Consensus::Params& params = Params().GetConsensus(145000);
     
     CBlockIndex pindexLast;
     int64_t nLastRetargetTime = 1395100835;
@@ -163,7 +163,7 @@ BOOST_AUTO_TEST_CASE(get_next_work_digishield_modulated_upper)
 BOOST_AUTO_TEST_CASE(get_next_work_digishield_modulated_lower)
 {
     SelectParams(CBaseChainParams::MAIN);
-    const Consensus::Params& params = Params().GetConsensus();
+    const Consensus::Params& params = Params().GetConsensus(145000);
     
     CBlockIndex pindexLast;
     int64_t nLastRetargetTime = 1395380517;
@@ -178,7 +178,7 @@ BOOST_AUTO_TEST_CASE(get_next_work_digishield_modulated_lower)
 BOOST_AUTO_TEST_CASE(get_next_work_digishield_rounding)
 {
     SelectParams(CBaseChainParams::MAIN);
-    const Consensus::Params& params = Params().GetConsensus();
+    const Consensus::Params& params = Params().GetConsensus(145000);
     
     CBlockIndex pindexLast;
     int64_t nLastRetargetTime = 1395094679;

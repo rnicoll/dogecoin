@@ -25,11 +25,20 @@ struct Params {
     int64_t nPowTargetSpacing;
     int64_t nPowTargetTimespan;
     int64_t DifficultyAdjustmentInterval() const { return nPowTargetTimespan / nPowTargetSpacing; }
+
+    /** Dogecoin-specific parameters */
+    bool fDigishieldDifficultyCalculation;
+
     /** Auxpow parameters */
     int32_t nAuxpowChainId;
     int nAuxpowStartHeight;
     bool fStrictChainId;
     int nLegacyBlocksBefore; // -1 for "always allow"
+
+    /** Height-aware consensus parameters */
+    uint32_t nHeightEffective; // When these parameters come into use
+    struct Params *pLeft;      // Left hand branch
+    struct Params *pRight;     // Right hand branch
 
     /**
      * Check whether or not to allow legacy blocks at the given height.

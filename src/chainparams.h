@@ -45,7 +45,22 @@ public:
         MAX_BASE58_TYPES
     };
 
-    const Consensus::Params& GetConsensus() const { return consensus; }
+    const Consensus::Params& GetConsensus( uint32_t nHeight) const {
+        const Consensus::Params *pCurrentParams = &consensus;
+        while (nHeight != pCurrentParams -> nHeightEffective) {
+            if (nHeight > pCurrentParams -> nHeightEffective
+                && pCurrentParams -> pRight != NULL) {
+                pCurrentParams = pCurrentParams -> pRight;
+            } else if (pCurrentParams -> pLeft != NULL) {
+                /* Find the lowest parameters below the target height */
+                pCurrentParams = pCurrentParams -> pLeft;
+            } else {
+                /* As close as we can get, stop */
+                break;
+            }
+        }
+        return *pCurrentParams;
+    }
     const CMessageHeader::MessageStartChars& MessageStart() const { return pchMessageStart; }
     const std::vector<unsigned char>& AlertKey() const { return vAlertPubKey; }
     int GetDefaultPort() const { return nDefaultPort; }
