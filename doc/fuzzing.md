@@ -1,16 +1,16 @@
-# Fuzzing Bitcoin Core using libFuzzer
+# Fuzzing Dogecoin Core using libFuzzer
 
 ## Quickstart guide
 
-To quickly get started fuzzing Bitcoin Core using [libFuzzer](https://llvm.org/docs/LibFuzzer.html):
+To quickly get started fuzzing Dogecoin Core using [libFuzzer](https://llvm.org/docs/LibFuzzer.html):
 
 ```sh
-$ git clone https://github.com/bitcoin/bitcoin
-$ cd bitcoin/
+$ git clone https://github.com/dogecoin/dogecoin
+$ cd dogecoin/
 $ ./autogen.sh
 $ CC=clang CXX=clang++ ./configure --enable-fuzz --with-sanitizers=address,fuzzer,undefined
 # macOS users: If you have problem with this step then make sure to read "macOS hints for
-# libFuzzer" on https://github.com/bitcoin/bitcoin/blob/master/doc/fuzzing.md#macos-hints-for-libfuzzer
+# libFuzzer" on https://github.com/dogecoin/dogecoin/blob/master/doc/fuzzing.md#macos-hints-for-libfuzzer
 $ make
 $ src/test/fuzz/process_message
 # abort fuzzing using ctrl-c
@@ -18,7 +18,7 @@ $ src/test/fuzz/process_message
 
 ## Fuzzing harnesses, fuzzing output and fuzzing corpora
 
-[`process_message`](https://github.com/bitcoin/bitcoin/blob/master/src/test/fuzz/process_message.cpp) is a fuzzing harness for the [`ProcessMessage(...)` function (`net_processing`)](https://github.com/bitcoin/bitcoin/blob/master/src/net_processing.cpp). The available fuzzing harnesses are found in [`src/test/fuzz/`](https://github.com/bitcoin/bitcoin/tree/master/src/test/fuzz).
+[`process_message`](https://github.com/dogecoin/dogecoin/blob/master/src/test/fuzz/process_message.cpp) is a fuzzing harness for the [`ProcessMessage(...)` function (`net_processing`)](https://github.com/dogecoin/dogecoin/blob/master/src/net_processing.cpp). The available fuzzing harnesses are found in [`src/test/fuzz/`](https://github.com/dogecoin/dogecoin/tree/master/src/test/fuzz).
 
 The fuzzer will output `NEW` every time it has created a test input that covers new areas of the code under test. For more information on how to interpret the fuzzer output, see the [libFuzzer documentation](https://llvm.org/docs/LibFuzzer.html).
 
@@ -83,7 +83,7 @@ INFO: seed corpus: files: 991 min: 1b max: 1858b total: 288291b rss: 150Mb
 
 If you find coverage increasing inputs when fuzzing you are highly encouraged to submit them for inclusion in the [`bitcoin-core/qa-assets`](https://github.com/bitcoin-core/qa-assets) repo.
 
-Every single pull request submitted against the Bitcoin Core repo is automatically tested against all inputs in the [`bitcoin-core/qa-assets`](https://github.com/bitcoin-core/qa-assets) repo. Contributing new coverage increasing inputs is an easy way to help make Bitcoin Core more robust.
+Every single pull request submitted against the Dogecoin Core repo is automatically tested against all inputs in the [`bitcoin-core/qa-assets`](https://github.com/bitcoin-core/qa-assets) repo. Contributing new coverage increasing inputs is an easy way to help make Dogecoin Core more robust.
 
 ## macOS hints for libFuzzer
 
@@ -93,7 +93,7 @@ example using `brew install llvm`.
 
 Should you run into problems with the address sanitizer, it is possible you
 may need to run `./configure` with `--disable-asm` to avoid errors
-with certain assembly code from Bitcoin Core's code. See [developer notes on sanitizers](https://github.com/bitcoin/bitcoin/blob/master/doc/developer-notes.md#sanitizers)
+with certain assembly code from Dogecoin Core's code. See [developer notes on sanitizers](https://github.com/dogecoin/dogecoin/blob/master/doc/developer-notes.md#sanitizers)
 for more information.
 
 You may also need to take care of giving the correct path for `clang` and
@@ -108,15 +108,15 @@ Full configure that was tested on macOS Catalina with `brew` installed `llvm`:
 
 Read the [libFuzzer documentation](https://llvm.org/docs/LibFuzzer.html) for more information. This [libFuzzer tutorial](https://github.com/google/fuzzing/blob/master/tutorial/libFuzzerTutorial.md) might also be of interest.
 
-# Fuzzing Bitcoin Core using american fuzzy lop (`afl-fuzz`)
+# Fuzzing Dogecoin Core using american fuzzy lop (`afl-fuzz`)
 
 ## Quickstart guide
 
-To quickly get started fuzzing Bitcoin Core using [`afl-fuzz`](https://github.com/google/afl):
+To quickly get started fuzzing Dogecoin Core using [`afl-fuzz`](https://github.com/google/afl):
 
 ```sh
-$ git clone https://github.com/bitcoin/bitcoin
-$ cd bitcoin/
+$ git clone https://github.com/dogecoin/dogecoin
+$ cd dogecoin/
 $ git clone https://github.com/google/afl
 $ make -C afl/
 $ make -C afl/llvm_mode/
@@ -136,15 +136,15 @@ $ afl/afl-fuzz -i inputs/ -o outputs/ -- src/test/fuzz/bech32
 
 Read the [`afl-fuzz` documentation](https://github.com/google/afl) for more information.
 
-# Fuzzing Bitcoin Core using Honggfuzz
+# Fuzzing Dogecoin Core using Honggfuzz
 
 ## Quickstart guide
 
-To quickly get started fuzzing Bitcoin Core using [Honggfuzz](https://github.com/google/honggfuzz):
+To quickly get started fuzzing Dogecoin Core using [Honggfuzz](https://github.com/google/honggfuzz):
 
 ```sh
-$ git clone https://github.com/bitcoin/bitcoin
-$ cd bitcoin/
+$ git clone https://github.com/dogecoin/dogecoin
+$ cd dogecoin/
 $ ./autogen.sh
 $ git clone https://github.com/google/honggfuzz
 $ cd honggfuzz/
