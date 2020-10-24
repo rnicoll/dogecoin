@@ -125,7 +125,7 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
 #if QT_VERSION >= 0x040700
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a Dogecoin address (e.g. %1)").arg(
+    widget->setPlaceholderText(QObject::tr("Enter a Froggiecoin address (e.g. %1)").arg(
         QString::fromStdString(DummyAddress(Params()))));
 #endif
     widget->setValidator(new BitcoinAddressEntryValidator(parent));
@@ -143,8 +143,8 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
 
 bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
-    // return if URI is not valid or is no dogecoin: URI
-    if(!uri.isValid() || uri.scheme() != QString("dogecoin"))
+    // return if URI is not valid or is no froggiecoin: URI
+    if(!uri.isValid() || uri.scheme() != QString("froggiecoin"))
         return false;
 
     SendCoinsRecipient rv;
@@ -204,13 +204,13 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 
 bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 {
-    // Convert dogecoin:// to dogecoin:
+    // Convert froggiecoin:// to froggiecoin:
     //
-    //    Cannot handle this later, because dogecoin:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because froggiecoin:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
-    if(uri.startsWith("dogecoin://", Qt::CaseInsensitive))
+    if(uri.startsWith("froggiecoin://", Qt::CaseInsensitive))
     {
-        uri.replace(0, 11, "dogecoin:");
+        uri.replace(0, 11, "froggiecoin:");
     }
     QUrl uriInstance(uri);
     return parseBitcoinURI(uriInstance, out);
@@ -218,7 +218,7 @@ bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 
 QString formatBitcoinURI(const SendCoinsRecipient &info)
 {
-    QString ret = QString("dogecoin:%1").arg(info.address);
+    QString ret = QString("froggiecoin:%1").arg(info.address);
     int paramCount = 0;
 
     if (info.amount)
@@ -741,9 +741,9 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == CBaseChainParams::MAIN)
-            optionFile << "Name=Dogecoin\n";
+            optionFile << "Name=Froggiecoin\n";
         else
-            optionFile << strprintf("Name=Dogecoin (%s)\n", chain);
+            optionFile << strprintf("Name=Froggiecoin (%s)\n", chain);
         optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", GetBoolArg("-testnet", false), GetBoolArg("-regtest", false));
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";

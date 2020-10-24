@@ -772,7 +772,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
         }
         else if (!addr.IsValid()) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Dogecoin address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Froggiecoin address"));
         }
         else // Valid address
         {
