@@ -74,7 +74,7 @@
         <translation>Sincronizando con la red…</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Vista general</translation>
     </message>
     <message>

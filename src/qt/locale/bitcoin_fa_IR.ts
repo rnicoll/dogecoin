@@ -74,7 +74,7 @@
         <translation>به روز رسانی با شبکه...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>و بازبینی</translation>
     </message>
     <message>

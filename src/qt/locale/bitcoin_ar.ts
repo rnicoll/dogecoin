@@ -238,7 +238,7 @@
         <translation>مزامنة مع الشبكة ...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;نظرة عامة</translation>
     </message>
     <message>

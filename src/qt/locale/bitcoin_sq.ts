@@ -182,7 +182,7 @@
         <translation>Duke u sinkronizuar me rrjetin...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Përmbledhje</translation>
     </message>
     <message>

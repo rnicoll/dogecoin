@@ -138,7 +138,7 @@
         <translation>Συγχρονισμός με το δίκτυο...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Επισκόπηση</translation>
     </message>
     <message>

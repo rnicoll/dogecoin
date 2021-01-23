@@ -170,7 +170,7 @@
         <translation>Synkroniserer med nettverk...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Oversikt</translation>
     </message>
     <message>

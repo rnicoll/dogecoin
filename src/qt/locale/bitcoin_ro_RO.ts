@@ -86,7 +86,7 @@
         <translation>Se sincronizează cu reţeaua...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Imagine de ansamblu</translation>
     </message>
     <message>

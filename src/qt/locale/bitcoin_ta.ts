@@ -54,7 +54,7 @@
 <context>
     <name>DogecoinGUI</name>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;கண்ணோட்டம்</translation>
     </message>
     <message>

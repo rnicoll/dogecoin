@@ -138,7 +138,7 @@
         <translation>Синхронізація з мережею...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Огляд</translation>
     </message>
     <message>

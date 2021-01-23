@@ -75,7 +75,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Gimme $5</source>
+        <source>Give Me $5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -310,8 +310,8 @@
     </message>
     <message>
         <location line="-507"/>
-        <source>&amp;Wow</source>
-        <translation type="unfinished">&amp;Wow</translation>
+        <source>&amp;Overview</source>
+        <translation type="unfinished">&amp;Overview</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -320,8 +320,8 @@
     </message>
     <message>
         <location line="+6"/>
-        <source>&amp;Ripoff</source>
-        <translation type="unfinished">&amp;Ripoff</translation>
+        <source>&amp;Rigged</source>
+        <translation type="unfinished">&amp;Rigged</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -330,8 +330,8 @@
     </message>
     <message>
         <location line="+10"/>
-        <source>&amp;Gimme $5</source>
-        <translation type="unfinished">&amp;Gimme $5</translation>
+        <source>&amp;Give Me $5</source>
+        <translation type="unfinished">&amp;Give Me $5</translation>
     </message>
     <message>
         <location line="+1"/>

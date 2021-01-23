@@ -242,7 +242,7 @@
         <translation>네트워크와 동기화중...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>개요(&amp;O)</translation>
     </message>
     <message>

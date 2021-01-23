@@ -210,7 +210,7 @@
         <translation>Sarearekin sinkronizatzen...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Gainbegiratu</translation>
     </message>
     <message>

@@ -102,7 +102,7 @@
         <translation>Usklađivanje s mrežom ...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Pregled</translation>
     </message>
     <message>

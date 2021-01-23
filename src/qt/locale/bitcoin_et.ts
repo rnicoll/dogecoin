@@ -230,7 +230,7 @@
         <translation>Võrgusünkimine...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Ülevaade</translation>
     </message>
     <message>

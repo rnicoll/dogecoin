@@ -78,7 +78,7 @@
         <translation>Тармоқ билан синхронланмоқда...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Кўриб чиқиш</translation>
     </message>
     <message>

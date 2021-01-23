@@ -142,7 +142,7 @@
         <translation>בסנכרון עם הרשת…</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;סקירה</translation>
     </message>
     <message>

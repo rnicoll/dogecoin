@@ -242,7 +242,7 @@
         <translation>Ağ ile senkronize ediliyor...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Genel bakış</translation>
     </message>
     <message>

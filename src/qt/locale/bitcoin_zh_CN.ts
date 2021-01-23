@@ -242,7 +242,7 @@
         <translation>正在与网络同步...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>概况(&amp;O)</translation>
     </message>
     <message>

@@ -103,7 +103,7 @@
         <translation>नेटवर्कमा समिकरण हुँदै...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>शारांश</translation>
     </message>
     <message>

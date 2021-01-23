@@ -238,7 +238,7 @@
         <translation>Sinkronisasi dengan jaringan...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Kilasan</translation>
     </message>
     <message>

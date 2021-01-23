@@ -230,7 +230,7 @@
         <translation>與網絡同步中...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>總覽 &amp;O</translation>
     </message>
     <message>

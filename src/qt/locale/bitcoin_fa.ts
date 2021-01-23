@@ -206,7 +206,7 @@
         <translation>همگام‌سازی با شبکه...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;بررسی اجمالی</translation>
     </message>
     <message>

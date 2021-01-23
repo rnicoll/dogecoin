@@ -242,7 +242,7 @@
         <translation>Synchronizuji se se sítí...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Přehled</translation>
     </message>
     <message>

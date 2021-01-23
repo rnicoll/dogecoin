@@ -74,7 +74,7 @@
         <translation>ქსელთან სინქრონიზება...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>მიმ&amp;ოხილვა</translation>
     </message>
     <message>

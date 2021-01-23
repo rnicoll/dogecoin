@@ -98,7 +98,7 @@
         <translation>กำลังทำข้อมูลให้ตรงกันกับเครือข่าย ...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;ภาพรวม</translation>
     </message>
     <message>

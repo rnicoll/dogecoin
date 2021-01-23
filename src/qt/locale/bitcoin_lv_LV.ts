@@ -74,7 +74,7 @@
         <translation>Sinhronizācija ar tīklu...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Pārskats</translation>
     </message>
     <message>

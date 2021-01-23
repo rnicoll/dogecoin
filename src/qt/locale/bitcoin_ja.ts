@@ -242,7 +242,7 @@
         <translation>ネットワークに同期中……</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>概要(&amp;O)</translation>
     </message>
     <message>

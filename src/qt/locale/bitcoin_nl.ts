@@ -242,7 +242,7 @@
         <translation>Synchroniseren met netwerk...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Overzicht</translation>
     </message>
     <message>

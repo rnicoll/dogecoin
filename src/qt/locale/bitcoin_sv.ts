@@ -243,7 +243,7 @@ Var vänlig och försök igen.</translation>
         <translation>Synkroniserar med nätverk...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>&amp;Översikt</translation>
     </message>
     <message>

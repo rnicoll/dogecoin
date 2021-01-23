@@ -86,7 +86,7 @@
         <translation>Dohitevam omrežje ...</translation>
     </message>
     <message>
-        <source>&amp;Wow</source>
+        <source>&amp;Overview</source>
         <translation>Pre&amp;gled</translation>
     </message>
     <message>
