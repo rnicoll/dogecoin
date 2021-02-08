@@ -9,7 +9,7 @@
 
 /* Moved here from the header, because we need auxpow and the logic
    becomes more involved.  */
-CBlockHeader CBlockIndex::GetBlockHeader(const Consensus::Params& consensusParams) const
+CBlockHeader CBlockIndex::GetBlockHeader(const Consensus::Params& consensusParams, bool fCheckPOW) const
 {
     CBlockHeader block;
 
@@ -20,7 +20,7 @@ CBlockHeader CBlockIndex::GetBlockHeader(const Consensus::Params& consensusParam
        have to read the actual *header*, not the full block.  */
     if (block.IsAuxpow())
     {
-        ReadBlockHeaderFromDisk(block, this, consensusParams);
+        ReadBlockHeaderFromDisk(block, this, consensusParams, fCheckPOW);
         return block;
     }
 
