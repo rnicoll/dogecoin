@@ -168,17 +168,9 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
         setCentralWidget(rpcConsole);
     }
 
-    // Dogecoin: load fallback font in case Comic Sans is not availble on the system
-    QFontDatabase::addApplicationFont(":fonts/ComicNeue-Bold");
-    QFontDatabase::addApplicationFont(":fonts/ComicNeue-Bold-Oblique");
-    QFontDatabase::addApplicationFont(":fonts/ComicNeue-Light");
-    QFontDatabase::addApplicationFont(":fonts/ComicNeue-Light-Oblique");
-    QFontDatabase::addApplicationFont(":fonts/ComicNeue-Regular");
-    QFontDatabase::addApplicationFont(":fonts/ComicNeue-Regular-Oblique");
-    QFont::insertSubstitution("Comic Sans MS", "Comic Neue");
-
-    // Dogecoin: Specify Comic Sans as new font.
-    QFont newFont("Comic Sans MS", 10);
+    // Froggie-it
+    QFontDatabase::addApplicationFont(":fonts/Chlorinap");
+    QFont newFont("Chlorinap", 18);
 
     // Dogecoin: Set new application font
     QApplication::setFont(newFont);

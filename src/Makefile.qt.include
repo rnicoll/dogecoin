@@ -366,12 +366,7 @@ RES_IMAGES =
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
 RES_FONTS = \
-  qt/res/fonts/ComicNeue-Bold-Oblique.ttf \
-  qt/res/fonts/ComicNeue-Bold.ttf \
-  qt/res/fonts/ComicNeue-Light-Oblique.ttf \
-  qt/res/fonts/ComicNeue-Light.ttf \
-  qt/res/fonts/ComicNeue-Regular-Oblique.ttf \
-  qt/res/fonts/ComicNeue-Regular.ttf
+  qt/res/fonts/Chlorinap.ttf
 
 BITCOIN_RC = qt/res/bitcoin-qt-res.rc
 
