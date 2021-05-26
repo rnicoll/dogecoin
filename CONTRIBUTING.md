@@ -1,13 +1,5 @@
 # Contributing to Dogecoin Core
 
-Dogecoin Core is an open source project, and we would welcome contributions which provably
-improve the state of the software. For those wanting to discuss changes, or look for work
-that needs doing, please see:
-
-* [Projects](https://github.com/dogecoin/dogecoin/projects)
-* [Dogecoindev on reddit](https://www.reddit.com/r/dogecoindev/)
-* [Discord](https://discord.gg/dogecoin) (in particular the #core-dev channel)
-
 ## Branch Strategy
 
 Dogecoin Core's default branch is intentionally a stable release, so that anyone downloading the code and compiling it gets a stable release.
