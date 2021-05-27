@@ -104,7 +104,7 @@ public:
         consensus.fStrictChainId = true;
         consensus.nLegacyBlocksBefore = 371337;
 
-        /** 
+        /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
@@ -119,7 +119,6 @@ public:
         m_assumed_chain_state_size = 6;
 
         genesis = CreateGenesisBlock(1386325540, 99943, 0x1e0ffff0, 1, 88 * COIN);
-
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x1a91e3dace36e2be3bf030a65679fe821aa1d6ef92e7c9902eb318182c355691"));
         assert(genesis.hashMerkleRoot == uint256S("0x5b2a3f53f605d62c53e62932dac6925e3d74afa5a4b459745c36d42d0ed26a69"));
@@ -356,9 +355,6 @@ public:
         consensus.fSimplifiedRewards = true;
         consensus.fShortEarlyCoinbase = true;
 
-        consensus.fStrictChainId = true;
-        consensus.nLegacyBlocksBefore = 0;
-
         consensus.nAuxpowChainId = 0x0062; // 98 - Josh Wise!
         consensus.nAuxpowStartHeight = 0;
         consensus.fStrictChainId = true;
@@ -441,8 +437,6 @@ public:
         consensus.fStrictChainId = true;
         consensus.nLegacyBlocksBefore = 0;
 
-        consensus.fStrictChainId = true;
-        consensus.nLegacyBlocksBefore = 0;
         pchMessageStart[0] = 0xfa;
         pchMessageStart[1] = 0xbf;
         pchMessageStart[2] = 0xb5;
