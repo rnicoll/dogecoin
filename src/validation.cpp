@@ -3565,8 +3565,8 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
     // Reject outdated version blocks when 95% (75% on testnet) of the network has upgraded:
     // check for version 2, 3 and 4 upgrades
     // Dogecoin: Version 2 enforcement was never used
-    if((block.nVersion < 3 && nHeight >= consensusParams.BIP66Height) ||
-       (block.nVersion < 4 && nHeight >= consensusParams.BIP65Height))
+    if((block.GetBaseVersion() < 3 && nHeight >= consensusParams.BIP66Height) ||
+       (block.GetBaseVersion() < 4 && nHeight >= consensusParams.BIP65Height))
             return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, strprintf("bad-version(0x%08x)", block.nVersion),
                                  strprintf("rejected nVersion=0x%08x block", block.nVersion));
 
