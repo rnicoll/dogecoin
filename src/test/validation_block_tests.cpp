@@ -67,13 +67,10 @@ std::shared_ptr<CBlock> MinerTestingSetup::Block(const uint256& prev_hash)
     CScript pubKey;
     pubKey << i++ << OP_TRUE;
 
-    // Dogecoin: Force high block interval so all blocks are min-difficulty.
-    time += (60 * 2) + 1; // Fake the network running slowly so all blocks are min difficulty
-    SetMockTime(time);
-
     auto ptemplate = BlockAssembler(*m_node.mempool, Params()).CreateNewBlock(pubKey);
     auto pblock = std::make_shared<CBlock>(ptemplate->block);
     pblock->hashPrevBlock = prev_hash;
+    pblock->nTime = ++time;
 
     pubKey.clear();
     {
