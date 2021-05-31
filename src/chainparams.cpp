@@ -5,6 +5,7 @@
 
 #include <chainparams.h>
 
+#include <arith_uint256.h>
 #include <chainparamsseeds.h>
 #include <consensus/merkle.h>
 #include <hash.h> // for signet block challenge hash
@@ -17,6 +18,25 @@
 
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
+
+bool CheckProofOfWorkSimplified(uint256 hash, unsigned int nBits)
+{
+    bool fNegative;
+    bool fOverflow;
+    arith_uint256 bnTarget;
+
+    bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
+
+    // Check range
+    if (fNegative || bnTarget == 0 || fOverflow)
+        return false;
+
+    // Check proof of work matches claimed amount
+    if (UintToArith256(hash) > bnTarget)
+        return false;
+
+    return true;
+}
 
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
@@ -346,7 +366,7 @@ public:
         consensus.nRuleChangeActivationThreshold = 1900; // 95% of 2000
         consensus.nMinerConfirmationWindow = 2000; // nPowTargetTimespan / nPowTargetSpacing
         consensus.MinBIP9WarningHeight = 0;
-        consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.powLimit = uint256S("0000f77ae0000000000000000000000000000000000000000000000000000000");
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
@@ -368,9 +388,19 @@ public:
         nDefaultPort = 55556;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1622364566, 832950, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1622364566, 81621, 0x1f00f77a, 1, 50 * COIN);
+        genesis.nBits = UintToArith256(consensus.powLimit).GetCompact();
+        printf("Bits: %x\n", genesis.nBits);
+        while (!CheckProofOfWorkSimplified(genesis.GetPoWHash(), genesis.nBits)) {
+            genesis.nNonce++;
+            if (genesis.nNonce % 100000 == 0) {
+                printf("Interim nonce: %d\n", genesis.nNonce);
+            }
+        }
+        printf("Nonce: %d\n", genesis.nNonce);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x6389d454b4f2c9ce1d0e3875c66601c7daab186482fbee0ea89b09572e33939d"));
+        printf("Hash: %s\n", consensus.hashGenesisBlock.ToString().c_str());
+        assert(consensus.hashGenesisBlock == uint256S("0xf21a2c00a3b58b3f1b245de5e30955c00784040a3e7042edb0d2eedd1fd085a5"));
         assert(genesis.hashMerkleRoot == uint256S("0xb60e6a649c2c43248d6d8da2fb19daa337511fabfe3875f382adb686474fc021"));
 
         vFixedSeeds.clear();
