@@ -60,10 +60,10 @@ static struct {
     {3, 0x0002f9d9}, {2, 0x0022bc36}, {2, 0x0022ba85}, {1, 0x001e0b98},
     {2, 0x0004e4f5}, {1, 0x0000a6ef}, {2, 0x000c2623}, {2, 0x00000c25},
     {2, 0x0004d997}, {2, 0x001bdaba}, {2, 0x00047265}, {2, 0x00169668},
-    {1, 0x630d4948}, {2, 0x9a4c4ebb}, {2, 0x554be537}, {1, 0xd63ddfc7},
-    {2, 0xa10acc11}, {1, 0x759a8363}, {2, 0xfb73090d}, {1, 0xe82c6a34},
-    {1, 0xe33e92d7}, {3, 0x658ef5cb}, {2, 0xba32ff22}, {5, 0x0227a10c},
-    {1, 0xa9a70155}, {5, 0xd096d809}, {1, 0x37176174}, {1, 0x830b8d0f},
+    {1, 0x0008f7a2}, {2, 0x0007727f}, {2, 0x0013e74a}, {1, 0x00038afe},
+    {2, 0x000f4f58}, {1, 0x00066068}, {2, 0x005857e5}, {1, 0x00076f46},
+    {1, 0x0001ed32}, {3, 0x001019b1}, {2, 0x0015c998}, {5, 0x001891bf},
+    {1, 0x000410fb}, {5, 0x0004d5e2}, {1, 0x00294ef3}, {1, 0x00021c7c},
     {1, 0xc6e3910e}, {2, 0x823f3ca8}, {1, 0x99850849}, {1, 0x7521fb81},
     {1, 0xaacaabab}, {1, 0xd645a2eb}, {5, 0x7aea1781}, {5, 0x9d6e4b78},
     {1, 0x4ce90fd8}, {1, 0xabdc832d}, {6, 0x4a34f32a}, {2, 0xf2524c1c},
@@ -277,14 +277,14 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
                 txFirst.push_back(pblock->vtx[0]);
             pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
             pblock->nNonce = blockinfo[i].nonce;
-            if (!CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus())) {
-                pblock->nNonce = 0;
-                printf("Grinding block %d\n", i);
-                while (!CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus())) {
-                    pblock->nNonce++;
-                }
-                blockinfo[i].nonce = pblock->nNonce;
+        }
+        if (!CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus())) {
+            pblock->nNonce = 0;
+            printf("Grinding block %d\n", i);
+            while (!CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus())) {
+                pblock->nNonce++;
             }
+            blockinfo[i].nonce = pblock->nNonce;
         }
         if (i > 0 && i % 4 == 0) {
             printf("   ");
