@@ -289,6 +289,13 @@ BASE_SCRIPTS = [
     'p2p_permissions.py',
     'feature_blocksdir.py',
     'wallet_startup.py',
+
+    # auxpow tests
+    'auxpow_mining.py',
+    'auxpow_mining.py --segwit',
+    'auxpow_invalidpow.py',
+    'auxpow_zerohash.py',
+
     'feature_config_args.py',
     'feature_settings.py',
     'rpc_getdescriptorinfo.py',
@@ -700,7 +707,7 @@ class TestResult():
 def check_script_prefixes():
     """Check that test scripts start with one of the allowed name prefixes."""
 
-    good_prefixes_re = re.compile("^(example|feature|interface|mempool|mining|p2p|rpc|wallet|tool)_")
+    good_prefixes_re = re.compile("^(example|feature|interface|mempool|mining|p2p|rpc|wallet|tool|auxpow)_")
     bad_script_names = [script for script in ALL_SCRIPTS if good_prefixes_re.match(script) is None]
 
     if bad_script_names:
