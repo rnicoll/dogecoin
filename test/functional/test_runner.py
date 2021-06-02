@@ -222,7 +222,8 @@ BASE_SCRIPTS = [
     'mempool_package_onemore.py',
     'rpc_createmultisig.py',
     'rpc_createmultisig.py --descriptors',
-    'feature_versionbits_warning.py',
+    # Dogecoin: BIP9 version bits are incompatible with AuxPoW versions.
+    #'feature_versionbits_warning.py',
     'rpc_preciousblock.py',
     'wallet_importprunedfunds.py',
     'wallet_importprunedfunds.py --descriptors',
