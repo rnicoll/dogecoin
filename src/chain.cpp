@@ -5,7 +5,9 @@
 
 #include <chain.h>
 
-#include <validation.h>
+// Dogecoin: Include the single function signature we need, to avoid the entire
+// validation.h being pulled in and creating a cyclic include loop
+bool ReadBlockHeaderFromDisk(CBlockHeader& block, const CBlockIndex* pindex, const Consensus::Params& consensusParams, const bool fCheckPOW = true);
 
 /* Moved here from the header, because we need auxpow and the logic
    becomes more involved.  */
