@@ -147,7 +147,7 @@ BOOST_FIXTURE_TEST_CASE(scan_for_wallet_transactions, TestChain240Setup)
         BOOST_CHECK_EQUAL(result.last_failed_block, oldTip->GetBlockHash());
         BOOST_CHECK_EQUAL(result.last_scanned_block, newTip->GetBlockHash());
         BOOST_CHECK_EQUAL(*result.last_scanned_height, newTip->nHeight);
-	// Dogecoin: Scaled up by 10,000
+        // Dogecoin: Scaled up by 10,000
         BOOST_CHECK_EQUAL(wallet.GetBalance().m_mine_immature, 250000 * COIN);
     }
 

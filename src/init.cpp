@@ -1380,7 +1380,7 @@ bool AppInitMain(const util::Ref& context, NodeContext& node, interfaces::BlockA
         if (!AppInitServers(context, node))
             return InitError(_("Unable to start HTTP server. See debug log for details."));
     }
-    
+
 #if defined(USE_SSE2)
     std::string sse2detect = scrypt_detect_sse2();
     LogPrintf("%s\n", sse2detect);
