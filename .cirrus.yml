@@ -63,41 +63,6 @@ task:
     FILE_ENV: "./ci/test/00_setup_env_native_qt5.sh"
 
 task:
-  name: 'x86_64 Linux  [GOAL: install]  [focal]  [depends, sanitizers: thread (TSan), no gui]'
-  << : *GLOBAL_TASK_TEMPLATE
-  container:
-    image: ubuntu:focal
-    cpu: 4  # Double CPU and Memory to avoid timeout
-    memory: 16G
-  env:
-    MAKEJOBS: "-j8"
-    FILE_ENV: "./ci/test/00_setup_env_native_tsan.sh"
-
-task:
-  name: 'x86_64 Linux  [GOAL: install]  [focal]  [depends, sanitizers: memory (MSan)]'
-  << : *GLOBAL_TASK_TEMPLATE
-  container:
-    image: ubuntu:focal
-  env:
-    FILE_ENV: "./ci/test/00_setup_env_native_msan.sh"
-
-task:
-  name: 'x86_64 Linux  [GOAL: install]  [focal]  [no depends, only system libs, sanitizers: address/leak (ASan + LSan) + undefined (UBSan) + integer]'
-  << : *GLOBAL_TASK_TEMPLATE
-  container:
-    image: ubuntu:focal
-  env:
-    FILE_ENV: "./ci/test/00_setup_env_native_asan.sh"
-
-task:
-  name: 'x86_64 Linux  [GOAL: install]  [focal]  [no depends, only system libs, sanitizers: fuzzer,address,undefined]'
-  << : *GLOBAL_TASK_TEMPLATE
-  container:
-    image: ubuntu:focal
-  env:
-    FILE_ENV: "./ci/test/00_setup_env_native_fuzz.sh"
-
-task:
   name: 'x86_64 Linux [GOAL: install]  [focal]  [multiprocess]'
   << : *GLOBAL_TASK_TEMPLATE
   container:
