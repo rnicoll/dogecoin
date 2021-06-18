@@ -6,13 +6,6 @@
 
 export LC_ALL=C.UTF-8
 
-# Make sure default datadir does not exist and is never read by creating a dummy file
-if [ "$CI_OS_NAME" == "macos" ]; then
-  echo > $HOME/Library/Application\ Support/Dogecoin
-else
-  DOCKER_EXEC echo \> \$HOME/.dogecoin
-fi
-
 DOCKER_EXEC mkdir -p ${DEPENDS_DIR}/SDKs ${DEPENDS_DIR}/sdk-sources
 
 DOCKER_EXEC qa/pull-tester/install-deps.sh
