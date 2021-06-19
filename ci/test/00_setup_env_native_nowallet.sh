@@ -7,8 +7,8 @@
 export LC_ALL=C.UTF-8
 
 export CONTAINER_NAME=ci_native_nowallet
-export DOCKER_NAME_TAG=ubuntu:16.04  # Use xenial to have one config run the tests in python3.5, see doc/dependencies.md
-export PACKAGES="python3-zmq clang-3.8 llvm-3.8"  # Use clang-3.8 to test C++11 compatibility, see doc/dependencies.md
+export DOCKER_NAME_TAG=ubuntu:18.04  # Check that bionic can compile our c++17 and run our functional tests in python3
+export PACKAGES="python3"  # Use clang-3.8 to test C++11 compatibility, see doc/dependencies.md
 export DEP_OPTS="NO_WALLET=1"
 export GOAL="install"
-export BITCOIN_CONFIG="--enable-glibc-back-compat --enable-reduce-exports CC=clang-3.8 CXX=clang++-3.8 --with-boost-process"
+export BITCOIN_CONFIG="-enable-glibc-back-compat --enable-reduce-exports"

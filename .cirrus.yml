@@ -49,12 +49,12 @@ task:
 
 # Replaces Travis "Win32" task
 task:
-  name: 'Win64  [GOAL: deploy]  [unit tests, no gui, no boost::process, no functional tests]'
+  name: 'Win32  [GOAL: deploy]  [unit tests, no gui, no boost::process, no functional tests]'
   << : *GLOBAL_TASK_TEMPLATE
   container:
     image: ubuntu:bionic
   env:
-    FILE_ENV: "./ci/test/00_setup_env_win64.sh"
+    FILE_ENV: "./ci/test/00_setup_env_win32.sh"
 
 # Replaces Travis "dogecoind" task
 task:
