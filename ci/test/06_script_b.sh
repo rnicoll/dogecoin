@@ -47,9 +47,3 @@ if [ "$RUN_FUNCTIONAL_TESTS" = "true" ]; then
   DOCKER_EXEC LD_LIBRARY_PATH=$DEPENDS_DIR/$HOST/lib ${TEST_RUNNER_ENV} qa/pull-tester/rpc-tests.py
   END_FOLD
 fi
-
-if [ "$RUN_SECURITY_TESTS" = "true" ]; then
-  BEGIN_FOLD security-tests
-  DOCKER_EXEC make test-security-check
-  END_FOLD
-fi
