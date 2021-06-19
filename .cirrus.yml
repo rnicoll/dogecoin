@@ -63,7 +63,7 @@ task:
   container:
     image: ubuntu:bionic
   env:
-    FILE_ENV: "./ci/test/00_setup_env_native_dogedoind.sh"
+    FILE_ENV: "./ci/test/00_setup_env_native_dogecoind.sh"
 
 # Replaces Travis "no wallet" task
 task:
