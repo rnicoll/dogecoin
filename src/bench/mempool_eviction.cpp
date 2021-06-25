@@ -11,12 +11,13 @@
 static void AddTx(const CTransactionRef& tx, const CAmount& nFee, CTxMemPool& pool) EXCLUSIVE_LOCKS_REQUIRED(cs_main, pool.cs)
 {
     int64_t nTime = 0;
+    double dPriority = 10.0;
     unsigned int nHeight = 1;
     bool spendsCoinbase = false;
     unsigned int sigOpCost = 4;
     LockPoints lp;
     pool.addUnchecked(CTxMemPoolEntry(
-        tx, nFee, nTime, nHeight,
+        tx, nFee, nTime, dPriority, nHeight,
         spendsCoinbase, sigOpCost, lp));
 }
 

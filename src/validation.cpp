@@ -707,6 +707,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
     nModifiedFees = nFees;
     m_pool.ApplyDelta(hash, nModifiedFees);
 
+    double dPriority = view.GetPriority(tx, chainActive.Height(), inChainInputValue);
     // Keep track of transactions that spend a coinbase, which we re-scan
     // during reorgs to ensure COINBASE_MATURITY is still met.
     bool fSpendsCoinbase = false;
@@ -718,7 +719,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
         }
     }
 
-    entry.reset(new CTxMemPoolEntry(ptx, nFees, nAcceptTime, ::ChainActive().Height(),
+    entry.reset(new CTxMemPoolEntry(ptx, nFees, nAcceptTime, dPriority, ::ChainActive().Height(),
             fSpendsCoinbase, nSigOpsCost, lp));
     unsigned int nSize = entry->GetTxSize();
 

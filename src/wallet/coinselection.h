@@ -18,7 +18,7 @@ static const CAmount MIN_FINAL_CHANGE = MIN_CHANGE/2;
 
 class CInputCoin {
 public:
-    CInputCoin(const CTransactionRef& tx, unsigned int i)
+    CInputCoin(const CTransactionRef& tx, unsigned int i, int depth)
     {
         if (!tx)
             throw std::invalid_argument("tx should not be null");
@@ -28,9 +28,10 @@ public:
         outpoint = COutPoint(tx->GetHash(), i);
         txout = tx->vout[i];
         effective_value = txout.nValue;
+        depth = depth;
     }
 
-    CInputCoin(const CTransactionRef& tx, unsigned int i, int input_bytes) : CInputCoin(tx, i)
+    CInputCoin(const CTransactionRef& tx, unsigned int i, int depth, int input_bytes) : CInputCoin(tx, i, depth)
     {
         m_input_bytes = input_bytes;
     }
@@ -40,6 +41,7 @@ public:
     CAmount effective_value;
     CAmount m_fee{0};
     CAmount m_long_term_fee{0};
+    int depth;
 
     /** Pre-computed estimated size of this output as a fully-signed input in a transaction. Can be -1 if it could not be calculated */
     int m_input_bytes{-1};

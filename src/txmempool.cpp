@@ -20,14 +20,18 @@
 #include <validationinterface.h>
 
 CTxMemPoolEntry::CTxMemPoolEntry(const CTransactionRef& _tx, const CAmount& _nFee,
-                                 int64_t _nTime, unsigned int _entryHeight,
-                                 bool _spendsCoinbase, int64_t _sigOpsCost, LockPoints lp)
-    : tx(_tx), nFee(_nFee), nTxWeight(GetTransactionWeight(*tx)), nUsageSize(RecursiveDynamicUsage(tx)), nTime(_nTime), entryHeight(_entryHeight),
+                                 int64_t _nTime, double _entryPriority, unsigned int _entryHeight,
+                                 CAmount _inChainInputValue, bool _spendsCoinbase,
+				 int64_t _sigOpsCost, LockPoints lp)
+    : tx(_tx), nFee(_nFee), nTxWeight(GetTransactionWeight(*tx)), nUsageSize(RecursiveDynamicUsage(tx)), nTime(_nTime),
+    entryPriority(_entryPriority), entryHeight(_entryHeight), inChainInputValue(_inChainInputValue),
     spendsCoinbase(_spendsCoinbase), sigOpCost(_sigOpsCost), lockPoints(lp), m_epoch(0)
 {
     nCountWithDescendants = 1;
     nSizeWithDescendants = GetTxSize();
     nModFeesWithDescendants = nFee;
+    CAmount nValueIn = tx->GetValueOut()+nFee;
+    assert(inChainInputValue <= nValueIn);
 
     feeDelta = 0;
 
@@ -35,6 +39,16 @@ CTxMemPoolEntry::CTxMemPoolEntry(const CTransactionRef& _tx, const CAmount& _nFe
     nSizeWithAncestors = GetTxSize();
     nModFeesWithAncestors = nFee;
     nSigOpCostWithAncestors = sigOpCost;
+}
+
+double
+CTxMemPoolEntry::GetPriority(unsigned int currentHeight) const
+{
+    double deltaPriority = ((double)(currentHeight-entryHeight)*inChainInputValue)/nModSize;
+    double dResult = entryPriority + deltaPriority;
+    if (dResult < 0) // This should only happen if it was called with a height below entry height
+        dResult = 0;
+    return dResult;
 }
 
 void CTxMemPoolEntry::UpdateFeeDelta(int64_t newFeeDelta)

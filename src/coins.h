@@ -325,6 +325,13 @@ public:
     //! See: https://stackoverflow.com/questions/42114044/how-to-release-unordered-map-memory
     void ReallocateCache();
 
+    /**
+     * Return priority of tx at height nHeight. Also calculate the sum of the values of the inputs
+     * that are already in the chain.  These are the inputs that will age and increase priority as
+     * new blocks are added to the chain.
+     */
+    double GetPriority(const CTransaction &tx, int nHeight, CAmount &inChainInputValue) const;
+
 private:
     /**
      * @note this is marked const, but may actually append to `cacheCoins`, increasing

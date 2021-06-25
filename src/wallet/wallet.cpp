@@ -2912,6 +2912,20 @@ bool CWallet::CreateTransactionInternal(
                     bnb_used = false;
                 }
 
+                for (const auto& pcoin : setCoins)
+                {
+                    CAmount nCredit = pcoin.txout.nValue;
+                    //The coin age after the next block (depth+1) is used instead of the current,
+                    //reflecting an assumption the user would accept a bit more delay for
+                    //a chance at a free transaction.
+                    //But mempool inputs might still be in the mempool, so their age stays 0
+                    int age = pcoin.depth;
+                    assert(age >= 0);
+                    if (age != 0)
+                        age += 1;
+                    dPriority += (double)nCredit * age;
+                }
+
                 const CAmount nChange = nValueIn - nValueToSelect;
                 if (nChange > 0)
                 {
