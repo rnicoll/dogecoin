@@ -2842,6 +2842,7 @@ bool CWallet::CreateTransactionInternal(
                 if (nSubtractFeeFromAmount == 0)
                     nValueToSelect += nFeeRet;
 
+                double dPriority = 0;
                 // vouts to the payees
                 if (!coin_selection_params.m_subtract_fee_outputs) {
                     coin_selection_params.tx_noinputs_size = 11; // Static vsize overhead + outputs vsize. 4 nVersion, 4 nLocktime, 1 input count, 1 output count, 1 witness overhead (dummy, flag, stack size)
@@ -2911,6 +2912,19 @@ bool CWallet::CreateTransactionInternal(
                 } else {
                     bnb_used = false;
                 }
+                for (const auto& pcoin : setCoins)
+                {
+                    CAmount nCredit = pcoin.txout.nValue;
+                    //The coin age after the next block (depth+1) is used instead of the current,
+                    //reflecting an assumption the user would accept a bit more delay for
+                    //a chance at a free transaction.
+                    //But mempool inputs might still be in the mempool, so their age stays 0
+                    int age = pcoin.age;
+                    assert(age >= 0);
+                    if (age != 0)
+                        age += 1;
+                    dPriority += (double)nCredit * age;
+                }
 
                 for (const auto& pcoin : setCoins)
                 {
@@ -2971,6 +2985,9 @@ bool CWallet::CreateTransactionInternal(
                     error = _("Signing transaction failed");
                     return false;
                 }
+
+                CTransaction txNewConst(txNew);
+                dPriority = txNewConst.ComputePriority(dPriority, nBytes);
 
                 nFeeNeeded = GetMinimumFee(*this, nBytes, coin_control, &feeCalc);
                 if (feeCalc.reason == FeeReason::FALLBACK && !m_allow_fallback_fee) {
@@ -4000,6 +4017,7 @@ std::shared_ptr<CWallet> CWallet::Create(interfaces::Chain& chain, const std::st
 
     walletInstance->m_confirm_target = gArgs.GetArg("-txconfirmtarget", DEFAULT_TX_CONFIRM_TARGET);
     walletInstance->m_spend_zero_conf_change = gArgs.GetBoolArg("-spendzeroconfchange", DEFAULT_SPEND_ZEROCONF_CHANGE);
+    walletInstance->m_send_free_transactions = gArgs.GetBoolArg("-sendfreetransactions", DEFAULT_SEND_FREE_TRANSACTIONS);
     walletInstance->m_signal_rbf = gArgs.GetBoolArg("-walletrbf", DEFAULT_WALLET_RBF);
 
     walletInstance->WalletLogPrintf("Wallet completed loading in %15dms\n", GetTimeMillis() - nStart);
