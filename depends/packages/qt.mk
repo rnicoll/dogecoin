@@ -1,14 +1,18 @@
 PACKAGE=qt
 $(package)_version=5.15.2
-$(package)_download_path=http://download.qt.io/new_archive/qt/5.15/$($(package)_version)/submodules
-$(package)_suffix=everywhere-src-$($(package)_version).tar.gz
+$(package)_download_path=https://download.qt.io/archive/qt/5.15/$($(package)_version)/submodules
+$(package)_suffix=everywhere-src-$($(package)_version).tar.xz
 $(package)_file_name=qtbase-$($(package)_suffix)
 $(package)_sha256_hash=909fad2591ee367993a75d7e2ea50ad4db332f05e1c38dd7a5a274e156a4e0f8
 $(package)_dependencies=openssl zlib
 $(package)_linux_dependencies=freetype fontconfig libxcb libX11 xproto libXext
 $(package)_build_subdir=qtbase
 $(package)_qt_libs=corelib network widgets gui plugins testlib printsupport
-$(package)_patches=mac-qmake.conf mingw-uuidof.patch pidlist_absolute.patch fix-xcb-include-order.patch fix_qt_pkgconfig.patch
+$(package)_patches=fix_qt_pkgconfig.patch mac-qmake.conf fix_no_printer.patch no-xlib.patch
+$(package)_patches+= fix_android_qmake_conf.patch fix_android_jni_static.patch dont_hardcode_pwd.patch
+$(package)_patches+= drop_lrelease_dependency.patch no_sdk_version_check.patch
+$(package)_patches+= fix_lib_paths.patch fix_android_pch.patch
+$(package)_patches+= qtbase-moc-ignore-gcc-macro.patch fix_limits_header.patch
 
 $(package)_qttranslations_file_name=qttranslations-$($(package)_suffix)
 $(package)_qttranslations_sha256_hash=d5788e86257b21d5323f1efd94376a213e091d1e5e03b45a95dd052b5f570db8
