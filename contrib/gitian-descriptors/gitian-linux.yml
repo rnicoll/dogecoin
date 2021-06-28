@@ -28,7 +28,7 @@ packages:
 - "ca-certificates"
 - "python"
 remotes:
-- "url": "https://github.com/dogecoin/dogecoin.git"
+- "url": "https://github.com/rnicoll/dogecoin.git"
   "dir": "dogecoin"
 files: []
 script: |
