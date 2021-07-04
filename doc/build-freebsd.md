@@ -30,7 +30,7 @@ BerkeleyDB is only necessary for the wallet functionality. To skip this, pass
 `--disable-wallet` to `./configure` and skip to the next section.
 
 ```bash
-./contrib/install_db4.sh `pwd`
+./contrib/install_db5.sh `pwd`
 export BDB_PREFIX="$PWD/db4"
 ```
 
