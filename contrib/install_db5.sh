@@ -67,6 +67,7 @@ mkdir -p "${BDB_PREFIX}"
 http_get "${BDB_URL}" "${BDB_VERSION}.tar.gz" "${BDB_HASH}"
 tar -xzvf ${BDB_VERSION}.tar.gz -C "$BDB_PREFIX"
 cd "${BDB_PREFIX}/${BDB_VERSION}/"
+patch -p1 < ../../depends/patches/bdb/clang_cxx_11.patch
 
 cd build_unix/
 
