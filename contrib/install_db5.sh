@@ -4,7 +4,7 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-# Install libdb5.1 (Berkeley DB).
+# Install libdb5.3 (Berkeley DB).>>>>>>> d7a8a33b3 (Update DB version to 5.3):contrib/install_db4.sh
 
 export LC_ALL=C
 set -e
@@ -22,8 +22,8 @@ expand_path() {
 }
 
 BDB_PREFIX="$(expand_path ${1})/db5"; shift;
-BDB_VERSION='db-5.1.29.NC'
-BDB_HASH='08238e59736d1aacdd47cfb8e68684c695516c37f4fbe1b8267dde58dc3a576c'
+BDB_VERSION='db-5.3.28.NC'
+BDB_HASH='76a25560d9e52a198d37a31440fd07632b5f1f8f9f2b6d5438f4bc3e7c9013ef'
 BDB_URL="https://download.oracle.com/berkeley-db/${BDB_VERSION}.tar.gz"
 
 check_exists() {
@@ -84,4 +84,4 @@ echo 'When compiling bitcoind, run `./configure` in the following way:'
 echo
 echo "  export BDB_PREFIX='${BDB_PREFIX}'"
 # shellcheck disable=SC2016
-echo '  ./configure BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" BDB_CFLAGS="-I${BDB_PREFIX}/include" ...'
+echo '  ./configure BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-5.3" BDB_CFLAGS="-I${BDB_PREFIX}/include" ...'
