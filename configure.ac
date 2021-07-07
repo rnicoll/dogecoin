@@ -1233,7 +1233,15 @@ fi
 
 if test x$enable_wallet != xno; then
     dnl Check for libdb_cxx only if wallet enabled
-    BITCOIN_FIND_BDB53
+    AC_CHECK_HEADERS([db_cxx.h],
+        [berkerley_found_headers=yes; break;])
+
+    AS_IF([test "x$berkerley_found_headers" != "xyes"],
+        [AC_MSG_ERROR([Unable to find the berkerley headers])])
+
+    AS_IF([! ./depends/db_verify 5.3],
+        [AC_MSG_ERROR([Uncompatible berkerley version])])
+
     if test x$suppress_external_warnings != xno ; then
         BDB_CPPFLAGS=SUPPRESS_WARNINGS($BDB_CPPFLAGS)
     fi
