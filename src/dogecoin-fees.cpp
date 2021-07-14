@@ -15,7 +15,7 @@
 #include "amount.h"
 #include <cmath>
 
-//mlumin: concept:  min relay fee 0.0001 doge; 
+//mlumin: concept:  min relay fee 0.001 doge; 
 //mlumin: concept:  min fee configurable and defaulted at 0.01 DOGE later
 
 
